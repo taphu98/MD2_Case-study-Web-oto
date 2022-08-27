@@ -11,9 +11,10 @@ public class ViewCategory {
     CategoryController categoryController = new CategoryController();
     List<Category> categoryList = categoryController.showCategoryList();
 
-    public ViewCategory() {
+    public void ViewCategoryMenu() {
         CategoryController categoryController = new CategoryController();
         List<Category> categoryList = categoryController.showCategoryList();
+
         System.out.println("CATEGORY MANAGE");
         System.out.println("1. Category product list");
         System.out.println("2. Create category product");
@@ -35,7 +36,7 @@ public class ViewCategory {
                 formDeleteCategory();
                 break;
             case 5:
-                Back.back();
+                Back.backHome();
         }
     }
 
@@ -60,11 +61,11 @@ public class ViewCategory {
 
 
         }
-        Back.back();
+        Back.backHome();
     }
 
     private void formEditCategory() {
-        System.out.println("ENTER ID TO EDIT: ");
+        System.out.println("ENTER ID TO UPDATE: ");
         int idCategory = Config.scanner().nextInt();
         if (categoryController.findCategory(idCategory) == null) {
             System.out.println("NOT EXIST");
@@ -78,11 +79,11 @@ public class ViewCategory {
             }
             Category newCategory = new Category(newCategoryName);
             categoryController.editCategory(idCategory, newCategory);
-            System.out.println("Edit success");
+            System.out.println("Update success");
             categoryController.showCategoryList();
 
         }
-        Back.back();
+        Back.backHome();
     }
 
     private void formCreateCategory() {
@@ -100,15 +101,15 @@ public class ViewCategory {
             categoryController.createCategory(category);
             System.out.println("Create success");
             categoryController.showCategoryList();
-            Back.back();
+            Back.backHome();
             break;
         }
     }
 
-    private void formShowCategoryList() {
-        System.out.printf("| %-10s | %-15s |", " Category id ", " Category name");
+    public void formShowCategoryList() {
+        System.out.printf("| %-15s | %-15s |%n", " Category id ", " Category name");
         for (int i = 0; i < categoryList.size(); i++) {
-            System.out.printf("| %-10d | %-15s |", categoryList.get(i).getId(), categoryList.get(i).getName());
+            System.out.printf("| %-15d | %-15s |%n", categoryList.get(i).getId(), categoryList.get(i).getName());
 
         }
     }
