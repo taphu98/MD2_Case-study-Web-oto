@@ -66,10 +66,10 @@ public class ViewHome {
 
     private void menuPM() {
         System.out.println("Hello PM: " + currentUser.getName());
-        System.out.println("1. Car manage");
-        System.out.println("2. Category manage ");
-        System.out.println("3. User Manage");
-        System.out.println("4. Log out");
+        System.out.println("1. Car manage ");
+        System.out.println("2. Category manage  ");
+        System.out.println("3. User Manage ");
+        System.out.println("4. Log out ");
         int choice = Config.scanner().nextInt();
         switch (choice) {
             case 1:
@@ -79,7 +79,8 @@ public class ViewHome {
                 new ViewCategory().ViewCategoryMenu();
                 break;
             case 3:
-
+                new ViewCompany().menuCompany();
+                break;
             case 4:
                 userController.logout();
                 new ViewMenu().menu();
@@ -91,8 +92,9 @@ public class ViewHome {
         System.out.println("Hello ADMIN: " + currentUser.getName());
         System.out.println("1. Car manage");
         System.out.println("2. Category manage ");
-        System.out.println("3. User Manage");
-        System.out.println("4. Log out");
+        System.out.println("3. Company manage");
+        System.out.println("4. User Manage");
+        System.out.println("5. Log out");
         int choice = Config.scanner().nextInt();
         switch (choice) {
             case 1:
@@ -102,8 +104,11 @@ public class ViewHome {
                 new ViewCategory().ViewCategoryMenu();
                 break;
             case 3:
-
+                new ViewCompany().menuCompany();
+                break;
             case 4:
+
+            case 5:
                 userController.logout();
                 new ViewMenu().menu();
                 break;

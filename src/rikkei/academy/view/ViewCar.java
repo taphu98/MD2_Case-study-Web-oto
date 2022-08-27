@@ -84,7 +84,7 @@ public class ViewCar {
     }
 
     private void formDeleteCar () {
-        System.out.println("INSERT CAR'S NAME TO DELETE: ");
+        System.out.println("INSERT CAR'S ID TO DELETE: ");
         int idCar = Config.scanner().nextInt();
         if (carController.detailCar(idCar) == null) {
             System.out.println("NOT EXIST");
