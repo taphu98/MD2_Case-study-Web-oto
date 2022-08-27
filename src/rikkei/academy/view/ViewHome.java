@@ -59,7 +59,7 @@ public class ViewHome {
             Car car = carController.detailCar(idCar);
             System.out.println(car);
         }
-        new Back();
+        Back.back();
     }
 
     public void menuAdmin() {
@@ -69,7 +69,8 @@ public class ViewHome {
         System.out.println("3. Delete car");
         System.out.println("4. Edit car");
         System.out.println("5. User Manage");
-        System.out.println("6. Log out");
+        System.out.println("6. Category manage ");
+        System.out.println("7. Log out");
         int choice = Config.scanner().nextInt();
         switch (choice) {
             case 1:
@@ -88,6 +89,9 @@ public class ViewHome {
                 formUserManage();
                 break;
             case 6:
+                new ViewCategory();
+                break;
+            case 7:
                 userController.logout();
                 new ViewMenu().menu();
                 break;
@@ -132,7 +136,7 @@ public class ViewHome {
             carController.showListCar();
 
         }
-        new Back();
+       Back.back();
     }
 
     private void formDeleteCar() {
@@ -154,6 +158,7 @@ public class ViewHome {
                     break;
             }
         }
+        Back.back();
 
     }
 
@@ -187,8 +192,7 @@ public class ViewHome {
             carController.createCar(car);
             System.out.println("Create success!");
             carController.showListCar();
-            new Back();
-            break;
+            Back.back();
 
         }
     }
@@ -202,7 +206,9 @@ public class ViewHome {
         List<Car> listSort = carController.sortByCompanyName();
         for (int i = 0; i < listSort.size(); i++) {
             int j = i + 1;
-            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15d |%n", j, listSort.get(i).getCarCompany(), listSort.get(i).getCarName(), listSort.get(i).isStatus() ? "New" : "Old", listSort.get(i).getPrice()+"$");
+            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s |%n", j, listSort.get(i).getCarCompany(), listSort.get(i).getCarName(), listSort.get(i).isStatus() ? "New" : "Old", listSort.get(i).getPrice()+"$");
         }
+        Back.back();
     }
+
 }

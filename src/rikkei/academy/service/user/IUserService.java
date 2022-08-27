@@ -10,6 +10,6 @@ public interface IUserService extends IGenerateService<User> {
     boolean existedByEmail(String email);
     boolean checkLogin(String username, String password);
     User getCurrentUser();
-
+//    void changPassword();
     void saveCurrentUser(User user);
 }

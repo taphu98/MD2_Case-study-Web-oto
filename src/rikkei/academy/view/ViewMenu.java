@@ -23,6 +23,9 @@ public class ViewMenu {
         System.out.println("*****MENU*****");
         System.out.println("1. Register");
         System.out.println("2. Login");
+        System.out.println("3. Category product");
+        System.out.println("4. Search product");
+        System.out.println("5. Sort product by price");
 
         int choice = Config.scanner().nextInt();
 //
@@ -33,6 +36,9 @@ public class ViewMenu {
             case 2:
                 formLogIn();
                 break;
+            case 3:
+            case 4:
+            case 5:
         }
         menu();
     }
