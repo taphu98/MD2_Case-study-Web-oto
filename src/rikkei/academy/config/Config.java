@@ -10,6 +10,20 @@ public class Config<E> {
         Scanner scanner = new Scanner(System.in);
         return scanner;
     }
+
+    public static int getValidInteger() {
+        int integer;
+        while (true) {
+            String s = scanner().nextLine();
+            if (s.matches("\\d+")) {
+                integer = Integer.parseInt(s);
+                break;
+            } else {
+                System.out.println("Invalid number");
+            }
+        }
+        return integer;
+    }
     public E read(String path) {
 
         try (

@@ -22,13 +22,14 @@ public class CategoryServiceIMPL implements ICategoryService {
 
     @Override
     public List<Category> findAll() {
+        updateData();
         return categoryList;
     }
 
     @Override
     public void save(Category category) {
         categoryList.add(category);
-        updateData();
+
     }
 
     @Override
@@ -51,8 +52,10 @@ public class CategoryServiceIMPL implements ICategoryService {
         for (int i = 0; i < categoryList.size(); i++) {
             if (id == categoryList.get(i).getId()) {
                 categoryList.remove(i);
+
             }
+
         }
-        updateData();
+
     }
 }

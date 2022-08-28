@@ -17,6 +17,7 @@ import java.util.Set;
 
 public class UserController {
     IUserService userService = new UserServiceIMPL();
+    User currentUser = userService.getCurrentUser();
     IRoleService roleService = new RoleServiceIMPL();
     public List<User> getListUser(){
        return userService.findAll();
@@ -56,6 +57,7 @@ public class UserController {
                 signUpDTO.getPassword(),
                 roles
         );
+
         userService.save(user);
         return new ResponseMessenger("success");
     }
@@ -77,6 +79,39 @@ public class UserController {
         return userService.findByUsername(username);
     }
     public void deleteUser(String username){
+
         userService.deleteByUsername(username);
+    }
+    public ResponseMessenger changePassword(String oldPassword, String newPassword){
+        if(!oldPassword.equals(currentUser.getPassword())){
+            return new ResponseMessenger("not_match");
+        }
+        currentUser.setPassword(newPassword);
+        userService.updateData();
+        return new ResponseMessenger("success");
+    }
+    public ResponseMessenger changeRole(String username, String roleName){
+        if (userService.findByUsername(username)==null){
+            return new ResponseMessenger("not_found");
+        }
+        if (!roleName.equals("user") && !roleName.equals("pm")){
+            return new ResponseMessenger("invalid_role");
+        }
+        Role role = roleName.equals("user")?roleService.findByRoleName(RoleName.USER):roleService.findByRoleName(RoleName.PM);
+        userService.changeRole(username,role);
+        return new ResponseMessenger("success");
+    }
+
+    public ResponseMessenger blockUser(String username) {
+        if (userService.findByUsername(username)==null){
+            return new ResponseMessenger("not_found");
+        }
+        userService.changeStatus(username);
+        boolean check = userService.findByUsername(username).isStatus();
+        if (check){
+            return new ResponseMessenger("blocked");
+        }else {
+            return new ResponseMessenger("unblocked");
+        }
     }
 }

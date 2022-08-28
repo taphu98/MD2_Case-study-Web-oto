@@ -21,7 +21,8 @@ public class ViewCategory {
         System.out.println("3. Edit category product");
         System.out.println("4. Delete category product");
         System.out.println("5. Back to menu");
-        int choice = Config.scanner().nextInt();
+        System.out.println("Enter your choice:");
+        int choice = Config.getValidInteger();
         switch (choice) {
             case 1:
                 formShowCategoryList();
@@ -43,12 +44,12 @@ public class ViewCategory {
 
     private void formDeleteCategory() {
         System.out.println("ENTER ID TO DELETE: ");
-        int idCategory = Config.scanner().nextInt();
+        int idCategory = Config.getValidInteger();
         if (categoryController.findCategory(idCategory) == null) {
             System.out.println("NOT EXIST");
         } else {
             System.out.println("1 FOR YES/ 2 FOR NO");
-            int chooseDelete = Config.scanner().nextInt();
+            int chooseDelete = Config.getValidInteger();
             switch (chooseDelete) {
                 case 1:
                     categoryController.deleteCategory(idCategory);
@@ -71,7 +72,7 @@ public class ViewCategory {
 
     private void formEditCategory() {
         System.out.println("ENTER ID TO UPDATE: ");
-        int idCategory = Config.scanner().nextInt();
+        int idCategory = Config.getValidInteger();
         if (categoryController.findCategory(idCategory) == null) {
             System.out.println("NOT EXIST");
         } else {
@@ -79,13 +80,16 @@ public class ViewCategory {
             System.out.println("OLD CATEGORY NAME: " + category.getName());
             System.out.println("ENTER THE NEW CATEGORY NAME: ");
             String newCategoryName = Config.scanner().nextLine();
-            if (newCategoryName.trim().equals("")) {
+            if (newCategoryName.matches("[a-zA-Z]{1,10}")) {
                 newCategoryName = category.getName();
+                Category newCategory = new Category(newCategoryName);
+                categoryController.editCategory(idCategory, newCategory);
+                System.out.println("UPDATE SUCCESS");
+                categoryController.showCategoryList();
+            }else {
+                System.out.println("PLEASE TRY AGAIN!");
             }
-            Category newCategory = new Category(newCategoryName);
-            categoryController.editCategory(idCategory, newCategory);
-            System.out.println("UPDATE SUCCESS");
-            categoryController.showCategoryList();
+
 
         }
         System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
@@ -106,14 +110,19 @@ public class ViewCategory {
             }
             System.out.println("INSERT CATEGORY NAME : ");
             String categoryName = Config.scanner().nextLine();
-            Category category = new Category(idCategory, categoryName);
-            categoryController.createCategory(category);
-            System.out.println("Create success");
-            categoryController.showCategoryList();
+            if (categoryName.matches("[a-zA-Z\\d]{1,10}")){
+                Category category = new Category(idCategory, categoryName);
+                categoryController.createCategory(category);
+                System.out.println("Create success");
+                categoryController.showCategoryList();
+            }else {
+
+                System.out.println("PLEASE ENTER CATEGORY NAME!");
+            }
             System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
             String backMenu = Config.scanner().nextLine();
             if (backMenu.equalsIgnoreCase("quit")) {
-                new ViewCompany().menuCompany();
+                new ViewCategory().categoryMenu();
                 break;
             }
         }

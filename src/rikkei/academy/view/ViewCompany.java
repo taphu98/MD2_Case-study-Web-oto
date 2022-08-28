@@ -18,7 +18,7 @@ public class ViewCompany {
         System.out.println("3. Update company");
         System.out.println("4. Delete company");
         System.out.println("5. Back");
-        int choice = Config.scanner().nextInt();
+        int choice = Config.getValidInteger();
         switch (choice){
             case 1:
                 formShowCompanyList();
@@ -40,7 +40,7 @@ public class ViewCompany {
 
     private void formDeleteCompany() {
         System.out.println("ENTER COMPANY ID TO DELETE: ");
-        int idCompany = Config.scanner().nextInt();
+        int idCompany = Config.getValidInteger();
         if (companyController.detailCompany(idCompany) == null){
             System.out.println("NOT EXIST");
         }else {
@@ -65,7 +65,7 @@ public class ViewCompany {
 
     private void formUpdateCompany() {
         System.out.println("ENTER COMPANY TO UPDATE: ");
-        int idCompany = Config.scanner().nextInt();
+        int idCompany = Config.getValidInteger();
         if (companyController.detailCompany(idCompany)==null){
             System.out.println("NOT EXIST");
         }else {

@@ -4,24 +4,26 @@ import java.io.Serializable;
 
 public class Car implements Serializable, Comparable<Car> {
     private int id;
-    private String carCompany;
-    private String carName;
-    private boolean status;
-    private int price;
 
-    public Car( String newCompanyName, String newCarName, String newStatus, String newPrice) {
-        this.carCompany = newCompanyName;
+    private String carName;
+    private String category;
+    private int price;
+    private String carCompany;
+
+    public Car( String newCarName, String newCategory, String newPrice,String newCompanyName) {
+
         this.carName = newCarName;
-        this.status = Boolean.parseBoolean(newStatus);
+        this.category = newCategory;
         this.price = Integer.parseInt((newPrice));
+        this.carCompany = newCompanyName;
     }
 
-    public Car(int id, String carCompany, String carName, boolean status, int price) {
+    public Car(int id, String carName, String category, int price, String carCompany) {
         this.id = id;
-        this.carCompany = carCompany;
         this.carName = carName;
-        this.status = status;
+        this.category = category;
         this.price = price;
+        this.carCompany = carCompany;
     }
 
 
@@ -33,14 +35,6 @@ public class Car implements Serializable, Comparable<Car> {
         this.id = id;
     }
 
-    public String getCarCompany() {
-        return carCompany;
-    }
-
-    public void setCarCompany(String carCompany) {
-        this.carCompany = carCompany;
-    }
-
     public String getCarName() {
         return carName;
     }
@@ -49,12 +43,12 @@ public class Car implements Serializable, Comparable<Car> {
         this.carName = carName;
     }
 
-    public boolean isStatus() {
-        return status;
+    public String getCategory() {
+        return category;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getPrice() {
@@ -65,14 +59,22 @@ public class Car implements Serializable, Comparable<Car> {
         this.price = price;
     }
 
+    public String getCarCompany() {
+        return carCompany;
+    }
+
+    public void setCarCompany(String carCompany) {
+        this.carCompany = carCompany;
+    }
+
     @Override
     public String toString() {
         return "| " +
                 "id: " + id +
-                ", carCompany: " + carCompany + '\'' +
-                ", carName: " + carName + '\'' +
-                ", status: " + (status?"New" : "Old") +
-                ", price: " + price + "$" +
+                ", carCompany: " + carName + '\'' +
+                ", carName: " + category + '\'' +
+                ", status: " + price+
+                ", price: " + carCompany + "$" +
                 " | ";
     }
 

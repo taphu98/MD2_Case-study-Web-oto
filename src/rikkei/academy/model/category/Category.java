@@ -1,8 +1,9 @@
 package rikkei.academy.model.category;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Category implements Serializable {
+public class Category implements Serializable, Comparable<Category>{
     private int id;
     private String name;
 
@@ -40,5 +41,10 @@ public class Category implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Category o) {
+        return this.getName().compareTo(o.getName());
     }
 }

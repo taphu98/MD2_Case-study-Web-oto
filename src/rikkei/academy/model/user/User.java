@@ -1,6 +1,7 @@
 package rikkei.academy.model.user;
 
 import rikkei.academy.model.role.Role;
+import rikkei.academy.model.role.RoleName;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -12,20 +13,20 @@ public class User implements Serializable {
     private String username;
     private String email;
     private String password;
-    private String avatar;
+//    private String avatar;
     private boolean status;
     private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(int id, String name, String username, String email, String password, String avatar, boolean status, Set<Role> roles) {
+    public User(int id, String name, String username, String email, String password, boolean status, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.avatar = avatar;
+//        this.avatar = avatar;
         this.status = status;
         this.roles = roles;
     }
@@ -79,13 +80,13 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+//    public String getAvatar() {
+//        return avatar;
+//    }
+//
+//    public void setAvatar(String avatar) {
+//        this.avatar = avatar;
+//    }
 
     public boolean isStatus() {
         return status;
@@ -97,6 +98,14 @@ public class User implements Serializable {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+    public RoleName getRoleName(){
+        for (Role role : roles){
+            if (role.getRoleName() == RoleName.ADMIN) return RoleName.ADMIN;
+            if (role.getRoleName() == RoleName.USER) return RoleName.USER;
+            if (role.getRoleName() == RoleName.PM) return RoleName.PM;
+        }
+        return null;
     }
 
     public void setRoles(Set<Role> roles) {
@@ -111,7 +120,6 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", avatar='" + avatar + '\'' +
                 ", status=" + status +
                 ", roles=" + roles +
                 '}';

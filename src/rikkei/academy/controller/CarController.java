@@ -21,7 +21,7 @@ public class CarController {
         Car car1 = carService.findById(id);
         car1.setCarCompany(newCar.getCarCompany());
         car1.setCarName(newCar.getCarName());
-//        car1.setStatus(newCar.isStatus());
+      car1.setCategory(newCar.getCategory());
         car1.setPrice(newCar.getPrice());
     }
     public void deleteById(int id){

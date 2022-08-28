@@ -9,6 +9,7 @@ public class Main {
     UserController userController = new UserController();
     public Main(){
         User currentUser = userController.getCurrentUser();
+        System.out.println(currentUser);
         if (currentUser == null){
             new ViewMenu().menu();
         }else {

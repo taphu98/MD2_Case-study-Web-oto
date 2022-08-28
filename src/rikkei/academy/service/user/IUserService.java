@@ -1,5 +1,7 @@
 package rikkei.academy.service.user;
 
+import rikkei.academy.dto.response.ResponseMessenger;
+import rikkei.academy.model.role.Role;
 import rikkei.academy.model.user.User;
 import rikkei.academy.service.IGenerateService;
 
@@ -12,4 +14,7 @@ public interface IUserService extends IGenerateService<User> {
     User getCurrentUser();
 //    void changPassword();
     void saveCurrentUser(User user);
+
+    void changeRole(String username, Role role);
+    void changeStatus(String username);
 }

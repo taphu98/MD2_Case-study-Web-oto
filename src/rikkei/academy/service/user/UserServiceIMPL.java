@@ -1,10 +1,16 @@
 package rikkei.academy.service.user;
 
 import rikkei.academy.config.Config;
+
+import rikkei.academy.model.role.Role;
+import rikkei.academy.model.role.RoleName;
 import rikkei.academy.model.user.User;
+import rikkei.academy.service.role.RoleServiceIMPL;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserServiceIMPL implements IUserService {
     static String PATH_USER = "C:\\Users\\Asus\\Module2\\case-study\\Website-ban-o-to\\src\\rikkei\\academy\\database\\user.txt";
@@ -15,6 +21,9 @@ public class UserServiceIMPL implements IUserService {
     static {
         if (userList == null) {
             userList = new ArrayList<>();
+            Set<Role> roles = new HashSet<>();
+            roles.add(new RoleServiceIMPL().findByRoleName(RoleName.ADMIN));
+            userList.add(new User(1,"Phu", "admin", "phu@gmail.com","admin",roles));
         }
     }
 
@@ -99,5 +108,21 @@ public class UserServiceIMPL implements IUserService {
     public void saveCurrentUser(User user) {
         new Config<User>().write(PATH_USER_LOGIN, user);
     }
+
+    @Override
+    public void changeRole(String username, Role role) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        findByUsername(username).setRoles(roles);
+        updateData();
+    }
+
+    @Override
+    public void changeStatus(String username) {
+        User user = findByUsername(username);
+        user.setStatus(!user.isStatus());
+        updateData();
+    }
+
 
 }

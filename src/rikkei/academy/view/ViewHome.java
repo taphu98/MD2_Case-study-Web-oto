@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewHome {
-    CarController carController = new CarController();
     UserController userController = new UserController();
     User currentUser = userController.getCurrentUser();
-    List<Car> carList = carController.showListCar();
     RoleName roleName = new ArrayList<>(currentUser.getRoles()).get(0).getRoleName();
 
 
@@ -39,7 +37,8 @@ public class ViewHome {
         System.out.println("2. Show car list");
         System.out.println("3. Show detail car");
         System.out.println("4. Log out");
-        int choice = Integer.parseInt(Config.scanner().nextLine());
+        System.out.println("Enter your choice:");
+        int choice = Config.getValidInteger();
         switch (choice) {
             case 1:
                 new ViewCategory().formShowCategoryList();
@@ -63,9 +62,10 @@ public class ViewHome {
         System.out.println("Hello PM: " + currentUser.getName());
         System.out.println("1. Car manage ");
         System.out.println("2. Category manage  ");
-        System.out.println("3. User Manage ");
+        System.out.println("3. Company manage ");
         System.out.println("4. Log out ");
-        int choice = Config.scanner().nextInt();
+        System.out.println("Enter your choice:");
+        int choice = Config.getValidInteger();
         switch (choice) {
             case 1:
                 new ViewCar().menuCar();
@@ -91,7 +91,8 @@ public class ViewHome {
         System.out.println("3. Company manage");
         System.out.println("4. User Manage");
         System.out.println("5. Log out");
-        int choice = Config.scanner().nextInt();
+        System.out.println("Enter your choice:");
+        int choice = Config.getValidInteger();
         switch (choice) {
             case 1:
                 new ViewCar().menuCar();
@@ -103,7 +104,8 @@ public class ViewHome {
                 new ViewCompany().menuCompany();
                 break;
             case 4:
-
+                new ViewUser().viewUserMenu();
+                break;
             case 5:
                 userController.logout();
                 new ViewMenu().menu();

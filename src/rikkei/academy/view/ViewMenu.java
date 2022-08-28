@@ -14,17 +14,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.awt.Color.BLUE;
+
 public class ViewMenu {
     public UserController userController = new UserController();
     public List<User> userList = userController.getListUser();
     public void menu() {
-        System.out.println("*****MENU*****");
-        System.out.println("1. Register");
-        System.out.println("2. Login");
-        System.out.println("3. Category product");
-        System.out.println("4. Search product");
-        System.out.println("5. Sort product by price");
-        int choice = Config.scanner().nextInt();
+        System.out.println("-----------------------------");
+        System.out.println("|      ***** MENU *****     |");
+        System.out.println("|  1. Register              |");
+        System.out.println("|  2. Login                 |");
+        System.out.println("|  3. Category product      |");
+        System.out.println("|  4. Search product        |");
+        System.out.println("|  5. Sort product by price |");
+        System.out.println("-----------------------------");
+        System.out.println("Enter your choice:");
+        int choice = Config.getValidInteger();
         switch (choice) {
             case 1:
                 formRegister();
@@ -62,7 +67,7 @@ public class ViewMenu {
             if (name.matches("[A-Z][a-zA-Z]{1,10}")) {
                 break;
             } else {
-                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
+                System.err.println("INVALID NAME! PLEASE TRY AGAIN!");
             }
         }
 
@@ -73,7 +78,7 @@ public class ViewMenu {
             if (username.matches("[a-zA-Z]{1,10}")) {
                 break;
             } else {
-                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
+                System.err.println("INVALID USERNAME! PLEASE TRY AGAIN!");
             }
         }
 
@@ -81,10 +86,10 @@ public class ViewMenu {
         while (true) {
             System.out.println("ENTER YOUR EMAIL: ");
             email = Config.scanner().nextLine();
-            if (email.matches(".+@.+")) {
+            if (email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
                 break;
             } else {
-                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
+                System.err.println("INVALID EMAIL! PLEASE TRY AGAIN!");
             }
         }
 
@@ -98,9 +103,7 @@ public class ViewMenu {
                 System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
-
-        System.out.println("ENTER YOUR ROLE: ");
-        String role = Config.scanner().nextLine();
+        String role = "user";
         Set<String> strRole = new HashSet<>();
         strRole.add(role);
         SignUpDTO signUpDTO = new SignUpDTO(id, name, username, email, password, strRole);
@@ -113,7 +116,7 @@ public class ViewMenu {
             case "email_existed":
                 System.out.println("Email already existed!");
                 break;
-            case "invalid role":
+            case "invalid_role":
                 System.out.println("Invalid role! Please try again!");
                 break;
             case "success":
