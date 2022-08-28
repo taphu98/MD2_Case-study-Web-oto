@@ -1,11 +1,9 @@
 package rikkei.academy.view;
 
-import rikkei.academy.back.Back;
 import rikkei.academy.config.Config;
 import rikkei.academy.controller.CarController;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.car.Car;
-import rikkei.academy.model.category.Category;
 import rikkei.academy.model.role.RoleName;
 import rikkei.academy.model.user.User;
 
@@ -18,7 +16,6 @@ public class ViewHome {
     User currentUser = userController.getCurrentUser();
     List<Car> carList = carController.showListCar();
     RoleName roleName = new ArrayList<>(currentUser.getRoles()).get(0).getRoleName();
-
 
 
     public ViewHome() {
@@ -36,7 +33,6 @@ public class ViewHome {
     }
 
 
-
     public void menuUser() {
         System.out.println("HELLO " + roleName + ": " + currentUser.getName());
         System.out.println("1. Show category list");
@@ -46,7 +42,7 @@ public class ViewHome {
         int choice = Integer.parseInt(Config.scanner().nextLine());
         switch (choice) {
             case 1:
-                 new ViewCategory().formShowCategoryList();
+                new ViewCategory().formShowCategoryList();
                 break;
             case 2:
                 new ViewCar().formShowCarList();
@@ -63,7 +59,6 @@ public class ViewHome {
     }
 
 
-
     private void menuPM() {
         System.out.println("Hello PM: " + currentUser.getName());
         System.out.println("1. Car manage ");
@@ -76,7 +71,7 @@ public class ViewHome {
                 new ViewCar().menuCar();
                 break;
             case 2:
-                new ViewCategory().ViewCategoryMenu();
+                new ViewCategory().categoryMenu();
                 break;
             case 3:
                 new ViewCompany().menuCompany();
@@ -88,6 +83,7 @@ public class ViewHome {
         }
         menuPM();
     }
+
     public void menuAdmin() {
         System.out.println("Hello ADMIN: " + currentUser.getName());
         System.out.println("1. Car manage");
@@ -101,7 +97,7 @@ public class ViewHome {
                 new ViewCar().menuCar();
                 break;
             case 2:
-                new ViewCategory().ViewCategoryMenu();
+                new ViewCategory().categoryMenu();
                 break;
             case 3:
                 new ViewCompany().menuCompany();
@@ -115,7 +111,6 @@ public class ViewHome {
         }
         menuAdmin();
     }
-
 
 
 }

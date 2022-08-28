@@ -13,7 +13,8 @@ public class ViewUser {
         System.out.println("*****USER MANAGE MENU*****");
         System.out.println("1. Show list user");
         System.out.println("2. Delete user");
-        int choice = Integer.parseInt(Config.scanner().nextLine());
+        System.out.println("3. Back");
+        int choice = Config.scanner().nextInt();
         switch (choice){
             case 1:
                 formShowListUser();
@@ -21,6 +22,10 @@ public class ViewUser {
             case 2:
                 formDeleteUser();
                 break;
+            case 3:
+                new ViewHome();
+                break;
+
         }
     }
 
@@ -44,7 +49,7 @@ public class ViewUser {
         }  }
 
     private void formShowListUser() {
-        System.out.printf("%-15s%s%n", "Username", "Role");
+        System.out.printf("%-15s%s%n", "USERNAME", "ROLE");
         for (User user : userList) {
             System.out.printf("%-15s%s%n", user.getUsername(), user.getRoles());
         }

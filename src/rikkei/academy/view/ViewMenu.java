@@ -17,8 +17,6 @@ import java.util.Set;
 public class ViewMenu {
     public UserController userController = new UserController();
     public List<User> userList = userController.getListUser();
-
-
     public void menu() {
         System.out.println("*****MENU*****");
         System.out.println("1. Register");
@@ -26,9 +24,7 @@ public class ViewMenu {
         System.out.println("3. Category product");
         System.out.println("4. Search product");
         System.out.println("5. Sort product by price");
-
         int choice = Config.scanner().nextInt();
-//
         switch (choice) {
             case 1:
                 formRegister();
@@ -37,11 +33,18 @@ public class ViewMenu {
                 formLogIn();
                 break;
             case 3:
+                new ViewCategory().formShowCategoryList();
+                break;
             case 4:
+                new ViewCar().formShowDetailCar();
+                break;
             case 5:
+                new ViewCar().formShowCarList();
+                break;
         }
         menu();
     }
+
 
     private void formRegister() {
         System.out.println("-----REGISTER-----");
@@ -54,49 +57,49 @@ public class ViewMenu {
 
         String name;
         while (true) {
-            System.out.println("Enter your name: ");
+            System.out.println("ENTER YOUR NAME: ");
             name = Config.scanner().nextLine();
             if (name.matches("[A-Z][a-zA-Z]{1,10}")) {
                 break;
             } else {
-                System.err.println("Invalid name ! Please try again !");
+                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
 
         String username;
         while (true) {
-            System.out.println("Enter your username: ");
+            System.out.println("ENTER YOUR USERNAME: ");
             username = Config.scanner().nextLine();
             if (username.matches("[a-zA-Z]{1,10}")) {
                 break;
             } else {
-                System.err.println("Invalid username ! Please try again !");
+                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
 
         String email;
         while (true) {
-            System.out.println("Enter your email: ");
+            System.out.println("ENTER YOUR EMAIL: ");
             email = Config.scanner().nextLine();
             if (email.matches(".+@.+")) {
                 break;
             } else {
-                System.err.println("Invalid email ! Please try again !");
+                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
 
         String password;
         while (true) {
-            System.out.println("Enter your password: ");
+            System.out.println("ENTER YOUR PASSWORD: ");
             password = Config.scanner().nextLine();
-            if (password.matches("[a-zA-Z0-9]{1,10}")) {
+            if (password.matches("[a-zA-Z\\d]{1,10}")) {
                 break;
             } else {
-                System.err.println("Invalid password ! Please try again !");
+                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
 
-        System.out.println("Enter your role: ");
+        System.out.println("ENTER YOUR ROLE: ");
         String role = Config.scanner().nextLine();
         Set<String> strRole = new HashSet<>();
         strRole.add(role);
@@ -125,22 +128,22 @@ public class ViewMenu {
     private void formLogIn() {
         String username;
         while (true) {
-            System.out.println("Enter your username: ");
+            System.out.println("ENTER YOUR USERNAME: ");
             username = Config.scanner().nextLine();
             if (username.matches("[a-zA-Z]{1,10}")) {
                 break;
             } else {
-                System.err.println("Invalid username ! Please try again !");
+                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
         String password;
         while (true) {
-            System.out.println("Enter your password: ");
+            System.out.println("ENTER YOUR PASSWORD: ");
             password = Config.scanner().nextLine();
-            if (password.matches("[a-zA-Z0-9]{1,10}")) {
+            if (password.matches("[a-zA-Z\\d]{1,10}")) {
                 break;
             } else {
-                System.err.println("Invalid password ! Please try again !");
+                System.err.println("INVALID PASSWORD! PLEASE TRY AGAIN!");
             }
         }
         SignInDTO signInDTO = new SignInDTO(username, password);

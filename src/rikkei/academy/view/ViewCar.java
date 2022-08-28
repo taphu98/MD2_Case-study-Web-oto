@@ -1,6 +1,6 @@
 package rikkei.academy.view;
 
-import rikkei.academy.back.Back;
+
 import rikkei.academy.config.Config;
 import rikkei.academy.controller.CarController;
 import rikkei.academy.model.car.Car;
@@ -12,7 +12,7 @@ public class ViewCar {
     List<Car> carList = carController.showListCar();
 
     public void menuCar() {
-        System.out.println("Car manage");
+        System.out.println("***CAR MANAGE***");
         System.out.println("1. Show car list");
         System.out.println("2. Create car");
         System.out.println("3. Show detail car");
@@ -37,13 +37,14 @@ public class ViewCar {
                 formDeleteCar();
                 break;
             case 6:
-                Back.backHome();
+                new ViewHome();
                 break;
         }
 
 
     }
-    private void formEditCar () {
+
+    private void formEditCar() {
         System.out.println("ENTER CAR'S ID TO UPDATE: ");
         int idCar = Config.scanner().nextInt();
         if (carController.detailCar(idCar) == null) {
@@ -52,7 +53,7 @@ public class ViewCar {
             Car car = carController.detailCar(idCar);
             System.out.println("OLD CAR COMPANY NAME: " + car.getCarCompany());
             System.out.println("OLD NAME : " + car.getCarName());
-            System.out.println("OLD STATUS : " + (car.isStatus() ? "New" : "Old"));
+            System.out.println("OLD STATUS : " + (car.isStatus() ? "NEW" : "OLD"));
             System.out.println("OLD PRICE: " + car.getPrice());
             System.out.println("ENTER NEW COMPANY NAME: ");
             String newCompanyName = Config.scanner().nextLine();
@@ -67,7 +68,7 @@ public class ViewCar {
             System.out.println("ENTER NEW CAR STATUS: ");
             String newStatus = Config.scanner().nextLine();
             if (newStatus.trim().equals("")) {
-                newStatus = (car.isStatus() ? "New" : "Old");
+                newStatus = (car.isStatus() ? "NEW" : "OLD");
             }
             System.out.println("ENTER NEW PRICE: ");
             String newPrice = Config.scanner().nextLine();
@@ -80,11 +81,15 @@ public class ViewCar {
             carController.showListCar();
 
         }
-        Back.backCarMenu();
+        System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+        String backMenu = Config.scanner().nextLine();
+        if (backMenu.equalsIgnoreCase("quit")) {
+            new ViewCar().menuCar();
+        }
     }
 
-    private void formDeleteCar () {
-        System.out.println("INSERT CAR'S ID TO DELETE: ");
+    private void formDeleteCar() {
+        System.out.println("ENTER CAR'S ID TO DELETE: ");
         int idCar = Config.scanner().nextInt();
         if (carController.detailCar(idCar) == null) {
             System.out.println("NOT EXIST");
@@ -102,11 +107,14 @@ public class ViewCar {
                     break;
             }
         }
-        Back.backCarMenu();
-
+        System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+        String backMenu = Config.scanner().nextLine();
+        if (backMenu.equalsIgnoreCase("quit")) {
+            new ViewCar().menuCar();
+        }
     }
 
-    private void formCreateCar () {
+    private void formCreateCar() {
         System.out.println("---------CREATE CAR---------");
         while (true) {
             int idCar;
@@ -115,11 +123,11 @@ public class ViewCar {
             } else {
                 idCar = carList.get(carList.size() - 1).getId() + 1;
             }
-            System.out.println("INSERT CAR'S COMPANY");
+            System.out.println("ENTER CAR'S COMPANY");
             String carCompany = Config.scanner().nextLine();
-            System.out.println("INSERT CAR's NAME: ");
+            System.out.println("ENTER CAR's NAME: ");
             String name = Config.scanner().nextLine();
-            System.out.println("INSERT CAR'S STATUS");
+            System.out.println("ENTER CAR'S STATUS");
             boolean status = false;
             System.out.println("Y FOR NEW OR N FOR OLD?");
             String check = Config.scanner().nextLine();
@@ -130,34 +138,39 @@ public class ViewCar {
             } else {
                 System.out.println("INVALID CHOICE");
             }
-            System.out.println("INSERT CAR's PRICE: ");
-            long price = Config.scanner().nextLong();
+            System.out.println("ENTER CAR'S PRICE: ");
+            int price = Config.scanner().nextInt();
             Car car = new Car(idCar, carCompany, name, status, price);
             carController.createCar(car);
             System.out.println("Create success!");
             carController.showListCar();
-            Back.backCarMenu();
+            System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+            String backMenu = Config.scanner().nextLine();
+            if (backMenu.equalsIgnoreCase("quit")) {
+                new ViewCar().menuCar();
+                break;
+            }
         }
     }
+
     public void formShowDetailCar() {
-        System.out.println("Enter car name: ");
+        System.out.println("ENTER CAR ID: ");
         int idCar = Config.scanner().nextInt();
         if (carController.detailCar(idCar) == null) {
-            System.out.println("Not exist");
+            System.out.println("NOT EXIST");
         } else {
             Car car = carController.detailCar(idCar);
             System.out.println(car);
         }
-        Back.backCarMenu();
     }
+
     public void formShowCarList() {
         System.out.printf("| %-10s | %-15s | %-15s | %-15s | %-15s | %n", "Car id", "Company name", "Car name", "Status", "Price");
         List<Car> listSort = carController.sortByCompanyName();
         for (int i = 0; i < listSort.size(); i++) {
             int j = i + 1;
-            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s |%n", j, listSort.get(i).getCarCompany(), listSort.get(i).getCarName(), listSort.get(i).isStatus() ? "New" : "Old", listSort.get(i).getPrice()+"$");
+            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s |%n", j, listSort.get(i).getCarCompany(), listSort.get(i).getCarName(), listSort.get(i).isStatus() ? "New" : "Old", listSort.get(i).getPrice() + "$");
         }
-        Back.backCarMenu();
     }
 
 }

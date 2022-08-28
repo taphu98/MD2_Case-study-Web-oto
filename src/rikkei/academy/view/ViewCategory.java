@@ -1,6 +1,6 @@
 package rikkei.academy.view;
 
-import rikkei.academy.back.Back;
+
 import rikkei.academy.config.Config;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.model.category.Category;
@@ -11,7 +11,7 @@ public class ViewCategory {
     CategoryController categoryController = new CategoryController();
     List<Category> categoryList = categoryController.showCategoryList();
 
-    public void ViewCategoryMenu() {
+    public void categoryMenu() {
         CategoryController categoryController = new CategoryController();
         List<Category> categoryList = categoryController.showCategoryList();
 
@@ -36,7 +36,8 @@ public class ViewCategory {
                 formDeleteCategory();
                 break;
             case 5:
-                Back.backHome();
+                new ViewHome();
+                break;
         }
     }
 
@@ -61,7 +62,11 @@ public class ViewCategory {
 
 
         }
-        Back.backHome();
+        System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+        String backMenu = Config.scanner().nextLine();
+        if (backMenu.equalsIgnoreCase("quit")) {
+            new ViewCategory().categoryMenu();
+        }
     }
 
     private void formEditCategory() {
@@ -79,11 +84,15 @@ public class ViewCategory {
             }
             Category newCategory = new Category(newCategoryName);
             categoryController.editCategory(idCategory, newCategory);
-            System.out.println("Update success");
+            System.out.println("UPDATE SUCCESS");
             categoryController.showCategoryList();
 
         }
-        Back.backHome();
+        System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+        String backMenu = Config.scanner().nextLine();
+        if (backMenu.equalsIgnoreCase("quit")) {
+            new ViewCompany().menuCompany();
+        }
     }
 
     private void formCreateCategory() {
@@ -101,13 +110,17 @@ public class ViewCategory {
             categoryController.createCategory(category);
             System.out.println("Create success");
             categoryController.showCategoryList();
-            Back.backHome();
-            break;
+            System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+            String backMenu = Config.scanner().nextLine();
+            if (backMenu.equalsIgnoreCase("quit")) {
+                new ViewCompany().menuCompany();
+                break;
+            }
         }
     }
 
     public void formShowCategoryList() {
-        System.out.printf("| %-15s | %-15s |%n", " Category id ", " Category name");
+        System.out.printf("| %-15s | %-15s |%n", " CATEGORY ID ", " CATEGORY NAME ");
         for (int i = 0; i < categoryList.size(); i++) {
             System.out.printf("| %-15d | %-15s |%n", categoryList.get(i).getId(), categoryList.get(i).getName());
 

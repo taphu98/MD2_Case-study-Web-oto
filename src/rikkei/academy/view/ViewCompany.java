@@ -1,6 +1,6 @@
 package rikkei.academy.view;
 
-import rikkei.academy.back.Back;
+
 import rikkei.academy.config.Config;
 import rikkei.academy.controller.CompanyController;
 import rikkei.academy.model.company.Company;
@@ -33,7 +33,7 @@ public class ViewCompany {
                 formDeleteCompany();
                 break;
             case 5:
-                Back.backHome();
+                new ViewHome();
                 break;
         }
     }
@@ -52,11 +52,15 @@ public class ViewCompany {
                     formShowCompanyList();
                     break;
                 case 2:
-                    new ViewHome();
+                    new ViewCompany().menuCompany();
                     break;
             }
         }
-        Back.backCompanyMenu();
+        System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+        String backMenu = Config.scanner().nextLine();
+        if (backMenu.equalsIgnoreCase("quit")) {
+            new ViewCompany().menuCompany();
+        }
     }
 
     private void formUpdateCompany() {
@@ -73,7 +77,11 @@ public class ViewCompany {
             System.out.println("Update success");
             companyController.showCompanyList();
         }
-        Back.backCompanyMenu();
+        System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+        String backMenu = Config.scanner().nextLine();
+        if (backMenu.equalsIgnoreCase("quit")) {
+            new ViewCompany().menuCompany();
+        }
     }
 
 
@@ -93,7 +101,12 @@ public class ViewCompany {
             companyController.createCompany(company);
             System.out.println("Create success");
             companyController.showCompanyList();
-            Back.backCompanyMenu();
+            System.out.println("INPUT ANY KEY TO CONTINUE - INPUT QUIT TO BACK : ");
+            String backMenu = Config.scanner().nextLine();
+            if (backMenu.equalsIgnoreCase("quit")) {
+                new ViewCompany().menuCompany();
+                break;
+            }
         }
     }
 
@@ -103,6 +116,7 @@ public class ViewCompany {
             System.out.printf("| %-15d | %-15s |%n", companyList.get(i).getId(), companyList.get(i).getCompanyName());
 
         }
+        new ViewCompany().menuCompany();
     }
 
 }

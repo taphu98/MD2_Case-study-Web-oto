@@ -12,7 +12,6 @@ public class CarServiceIMPL implements ICarService {
     static String PATH_CAR = "C:\\Users\\Asus\\Module2\\case-study\\Website-ban-o-to\\src\\rikkei\\academy\\database\\car.txt";
     static Config<List<Car>> config = new Config<>();
     public static List<Car> carList = config.read(PATH_CAR);
-
     static {
         if (carList == null) {
             carList = new ArrayList<>();
@@ -35,6 +34,17 @@ public class CarServiceIMPL implements ICarService {
     public void save(Car car) {
         carList.add(car);
         updateData();
+    }
+    @Override
+    public List<Car> sortCarList() {
+        List<Car> listSort = new ArrayList<>();
+        for (int i = 0; i < carList.size(); i++) {
+            listSort.add(carList.get(i));
+        }
+        Collections.sort(listSort);
+        updateData();
+        return listSort;
+
     }
 
     @Override
@@ -62,14 +72,6 @@ public class CarServiceIMPL implements ICarService {
         updateData();
     }
 
-    @Override
-    public List<Car> sortCarList() {
-        List<Car> listSort = new ArrayList<>();
-        for (int i = 0; i < carList.size(); i++) {
-            listSort.add(carList.get(i));
-        }
-        Collections.sort(listSort);
-        return listSort;
-    }
+
 }
 

@@ -7,16 +7,16 @@ public class Car implements Serializable, Comparable<Car> {
     private String carCompany;
     private String carName;
     private boolean status;
-    private long price;
+    private int price;
 
     public Car( String newCompanyName, String newCarName, String newStatus, String newPrice) {
         this.carCompany = newCompanyName;
         this.carName = newCarName;
         this.status = Boolean.parseBoolean(newStatus);
-        this.price = Long.parseLong(newPrice);
+        this.price = Integer.parseInt((newPrice));
     }
 
-    public Car(int id, String carCompany, String carName, boolean status, long price) {
+    public Car(int id, String carCompany, String carName, boolean status, int price) {
         this.id = id;
         this.carCompany = carCompany;
         this.carName = carName;
@@ -57,32 +57,32 @@ public class Car implements Serializable, Comparable<Car> {
         this.status = status;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", carCompany='" + carCompany + '\'' +
-                ", carName='" + carName + '\'' +
-                ", status=" + status +
-                ", price=" + price +
-                '}';
+        return "| " +
+                "id: " + id +
+                ", carCompany: " + carCompany + '\'' +
+                ", carName: " + carName + '\'' +
+                ", status: " + (status?"New" : "Old") +
+                ", price: " + price + "$" +
+                " | ";
     }
 
     @Override
     public int compareTo(Car car) {
-        int temp = this.getCarCompany().compareTo(car.getCarCompany());
+        int temp = this.getPrice()-(car.getPrice());
         if (temp != 0) {
             return temp;
         }
-        temp = (int) (this.getPrice() - car.getPrice());
+        temp = this.getCarName().compareTo(car.getCarName());
         return temp;
     }
 }

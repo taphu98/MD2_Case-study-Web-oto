@@ -43,6 +43,7 @@ public class UserController {
                     break;
                 case "pm":
                     roles.add(roleService.findByRoleName(RoleName.PM));
+                    break;
                 default:
                     return new ResponseMessenger("invalid_role");
             }
