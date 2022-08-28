@@ -14,20 +14,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.awt.Color.BLUE;
+import static rikkei.academy.plugin.ConsoleColors.*;;
 
 public class ViewMenu {
     public UserController userController = new UserController();
     public List<User> userList = userController.getListUser();
     public void menu() {
-        System.out.println("-----------------------------");
+        System.out.println(BLUE+"-----------------------------");
         System.out.println("|      ***** MENU *****     |");
         System.out.println("|  1. Register              |");
         System.out.println("|  2. Login                 |");
         System.out.println("|  3. Category product      |");
         System.out.println("|  4. Search product        |");
         System.out.println("|  5. Sort product by price |");
-        System.out.println("-----------------------------");
+        System.out.println("-----------------------------" + RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {

@@ -7,20 +7,22 @@ import rikkei.academy.model.category.Category;
 
 import java.util.List;
 
+import static rikkei.academy.plugin.ConsoleColors.BLUE;
+import static rikkei.academy.plugin.ConsoleColors.RESET;
+
 public class ViewCategory {
     CategoryController categoryController = new CategoryController();
     List<Category> categoryList = categoryController.showCategoryList();
 
     public void categoryMenu() {
-        CategoryController categoryController = new CategoryController();
-        List<Category> categoryList = categoryController.showCategoryList();
-
-        System.out.println("CATEGORY MANAGE");
-        System.out.println("1. Category product list");
-        System.out.println("2. Create category product");
-        System.out.println("3. Edit category product");
-        System.out.println("4. Delete category product");
-        System.out.println("5. Back to menu");
+        System.out.println(BLUE+"------------------------------");
+        System.out.println("|     ***CATEGORY MANAGE***   |");
+        System.out.println("|  1. Category product list   |");
+        System.out.println("|  2. Create category product |");
+        System.out.println("|  3. Edit category product   |");
+        System.out.println("|  4. Delete category product |");
+        System.out.println("|  5. Back to menu            |");
+        System.out.println("-------------------------------" + RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {

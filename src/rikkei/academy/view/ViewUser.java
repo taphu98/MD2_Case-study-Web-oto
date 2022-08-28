@@ -7,18 +7,22 @@ import rikkei.academy.model.user.User;
 
 import java.util.List;
 
+import static rikkei.academy.plugin.ConsoleColors.*;
+
 public class ViewUser {
     UserController userController = new UserController();
     List<User> userList = userController.getListUser();
 
     public void viewUserMenu() {
-        System.out.println("*****USER MANAGE MENU*****");
-        System.out.println("1. Show list user");
-        System.out.println("2. Delete user");
-        System.out.println("3. Change password");
-        System.out.println("4. Change role");
-        System.out.println("5. Block user");
-        System.out.println("6. Back");
+        System.out.println(BLUE+"---------------------------------");
+        System.out.println("|   *****USER MANAGE MENU*****  |");
+        System.out.println("|   1. Show list user           |");
+        System.out.println("|   2. Delete user              |");
+        System.out.println("|   3. Change password          |");
+        System.out.println("|   4. Change role              |");
+        System.out.println("|   5. Block user               |");
+        System.out.println("|   6. Back                     |");
+        System.out.println("---------------------------------" + RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {

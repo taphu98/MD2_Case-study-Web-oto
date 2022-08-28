@@ -10,6 +10,8 @@ import rikkei.academy.model.user.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static rikkei.academy.plugin.ConsoleColors.BLUE;
+
 public class ViewHome {
     UserController userController = new UserController();
     User currentUser = userController.getCurrentUser();
@@ -86,11 +88,13 @@ public class ViewHome {
 
     public void menuAdmin() {
         System.out.println("Hello ADMIN: " + currentUser.getName());
-        System.out.println("1. Car manage");
-        System.out.println("2. Category manage ");
-        System.out.println("3. Company manage");
-        System.out.println("4. User Manage");
-        System.out.println("5. Log out");
+        System.out.println(BLUE+"------------------------");
+        System.out.println("|   1. Car manage      |");
+        System.out.println("|   2. Category manage |");
+        System.out.println("|   3. Company manage  |");
+        System.out.println("|   4. User manage     |");
+        System.out.println("|   5. Log out         |");
+        System.out.println("------------------------");
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {
