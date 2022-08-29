@@ -70,11 +70,11 @@ public class Car implements Serializable, Comparable<Car> {
     @Override
     public String toString() {
         return "| " +
-                "id: " + id +
-                ", carCompany: " + carName + '\'' +
-                ", carName: " + category + '\'' +
-                ", status: " + price+
-                ", price: " + carCompany + "$" +
+                "Id: " + id +
+                " | Car Company: " + carName  +
+                " | Car Name: " + category +
+                " | Status: " + price+
+                " | Price: " + carCompany + "$" +
                 " | ";
     }
 

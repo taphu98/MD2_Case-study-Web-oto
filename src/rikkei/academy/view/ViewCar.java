@@ -8,13 +8,14 @@ import rikkei.academy.model.car.Car;
 import java.util.List;
 
 import static rikkei.academy.plugin.ConsoleColors.BLUE;
+import static rikkei.academy.plugin.ConsoleColors.RESET;
 
 public class ViewCar {
     CarController carController = new CarController();
     List<Car> carList = carController.showListCar();
 
     public void menuCar() {
-        System.out.println(BLUE+"-----------------------------");
+        System.out.println(BLUE+"---------------------------");
         System.out.println("|     ***CAR MANAGE***    |");
         System.out.println("|    1. Show car list     |");
         System.out.println("|    2. Create car        |");
@@ -22,7 +23,7 @@ public class ViewCar {
         System.out.println("|    4. Update car        |");
         System.out.println("|    5. Delete car        |");
         System.out.println("|    6. Back              |");
-        System.out.println("---------------------------");
+        System.out.println("---------------------------"+RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {
@@ -169,10 +170,10 @@ public class ViewCar {
 
     public void formShowCarList() {
         System.out.printf("| %-10s | %-15s | %-15s | %-15s | %-15s | %n", "Car id", "Name", "Category", "Price", "Company");
-        List<Car> listSort = carController.sortByCompanyName();
-        for (int i = 0; i < listSort.size(); i++) {
+
+        for (int i = 0; i < carList.size(); i++) {
             int j = i + 1;
-            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s |%n", j,listSort.get(i).getCarName(), listSort.get(i).getCategory(), listSort.get(i).getPrice() + "$", listSort.get(i).getCarCompany());
+            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s |%n", j,carList.get(i).getCarName(), carList.get(i).getCategory(), carList.get(i).getPrice() + "$", carList.get(i).getCarCompany());
         }
     }
 

@@ -4,17 +4,23 @@ import rikkei.academy.config.Config;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.user.User;
 
+import static rikkei.academy.plugin.ConsoleColors.BLUE;
+import static rikkei.academy.plugin.ConsoleColors.RESET;
+
 public class ViewMyProfile {
     UserController userController = new UserController();
     User currentUser = userController.getCurrentUser();
     public void viewProfile(){
-        System.out.println("***MY PROFILE***");
-        System.out.println("1. Change password");
-        System.out.println("2. Change role");
-        System.out.println("3. Block user");
-        System.out.println("4. Change profile");
-        System.out.println("5. Log out");
-        System.out.println("6. Back menu");
+        System.out.println(BLUE+"---------------------------");
+        System.out.println("|     ***MY PROFILE***     |");
+        System.out.println("|    1. Change password    |");
+        System.out.println("|    2. Change role        |");
+        System.out.println("|    3. Block user         |");
+        System.out.println("|    4. Change profile     |");
+        System.out.println("|    5. Log out            |");
+        System.out.println("|    6. Back menu          |");
+        System.out.println("-----------------------------"+ RESET);
+        System.out.println("ENTER YOUR CHOICE : ");
         int choice = Config.getValidInteger();
         switch (choice){
             case 1:
