@@ -1,13 +1,10 @@
 package rikkei.academy.service.category;
 
 import rikkei.academy.config.Config;
-import rikkei.academy.model.car.Car;
 import rikkei.academy.model.category.Category;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class CategoryServiceIMPL implements ICategoryService {
     static String PATH_CATEGORY = "C:\\Users\\Asus\\Module2\\case-study\\Website-ban-o-to\\src\\rikkei\\academy\\database\\category.txt";
@@ -29,7 +26,7 @@ public class CategoryServiceIMPL implements ICategoryService {
     @Override
     public void save(Category category) {
         categoryList.add(category);
-
+        updateData();
     }
 
     @Override

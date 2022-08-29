@@ -1,6 +1,5 @@
 package rikkei.academy.controller;
 
-import rikkei.academy.model.car.Car;
 import rikkei.academy.model.category.Category;
 import rikkei.academy.service.category.CategoryServiceIMPL;
 import rikkei.academy.service.category.ICategoryService;

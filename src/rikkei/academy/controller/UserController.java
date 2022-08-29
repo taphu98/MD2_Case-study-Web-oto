@@ -65,6 +65,9 @@ public class UserController {
         if (!userService.checkLogin(signInDTO.getUsername(), signInDTO.getPassword())){
             return new ResponseMessenger("login_failure");
         }
+        if (userService.findByUsername(signInDTO.getUsername()).isStatus()){
+            return new ResponseMessenger("blocked");
+        }
         User login = userService.findByUsername(signInDTO.getUsername());
         userService.saveCurrentUser(login);
         return new ResponseMessenger("login_success");
@@ -106,8 +109,10 @@ public class UserController {
         if (userService.findByUsername(username)==null){
             return new ResponseMessenger("not_found");
         }
+
         userService.changeStatus(username);
         boolean check = userService.findByUsername(username).isStatus();
+        System.out.println(check);
         if (check){
             return new ResponseMessenger("blocked");
         }else {

@@ -10,5 +10,4 @@ public interface IGenerateService<E> {
     void save(E e);
     void updateData();
 
-
 }

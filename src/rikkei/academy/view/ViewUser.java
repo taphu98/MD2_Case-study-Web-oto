@@ -155,9 +155,9 @@ public class ViewUser {
     }
 
     public void formShowListUser() {
-        System.out.printf("| %s  | %-15s | %s |%n", "ID", "USERNAME", "ROLE", "STATUS");
+        System.out.printf("| %s  | %-15s | %s | %s |%n", "ID", "USERNAME", "ROLE", "STATUS");
         for (User user : userList) {
-            System.out.printf("| %s | %-15s | %s |%n", user.getId(), user.getUsername(), user.getRoleName(), user.isStatus() ? "ACTIVATING" : "BLOCKED");
+            System.out.printf("| %s | %-15s | %s | %s |%n", user.getId(), user.getUsername(), user.getRoleName(), (user.isStatus() ? "BLOCKED" : "ACTIVATING"));
         }
     }
 }

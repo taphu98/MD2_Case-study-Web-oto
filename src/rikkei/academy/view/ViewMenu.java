@@ -152,13 +152,17 @@ public class ViewMenu {
         SignInDTO signInDTO = new SignInDTO(username, password);
         ResponseMessenger responseMessenger = userController.login(signInDTO);
         switch (responseMessenger.getMessage()) {
+            case "blocked":
+                System.out.println("This user is blocked");
+                break;
+
             case "login_success":
                 System.out.println("Login successful!");
                 new ViewHome();
                 break;
             case "login_failure":
                 System.out.println("Username or password is incorrect!");
-                break;
+
         }
 
 

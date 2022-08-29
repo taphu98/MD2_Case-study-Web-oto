@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 public class Config<E> {
     public static Scanner scanner(){
-        Scanner scanner = new Scanner(System.in);
-        return scanner;
+        return new Scanner(System.in);
     }
 
     public static int getValidInteger() {
@@ -44,7 +43,7 @@ public class Config<E> {
         ) {
             oos.writeObject(data);
         } catch (Exception e) {
-            System.out.println("Error writing");
+            e.printStackTrace();
         }
     }
 }

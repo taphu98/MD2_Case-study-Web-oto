@@ -1,11 +1,16 @@
 package rikkei.academy.view;
 
 import rikkei.academy.config.Config;
+import rikkei.academy.controller.CarController;
+import rikkei.academy.controller.CartController;
 import rikkei.academy.controller.UserController;
+import rikkei.academy.model.car.Car;
+import rikkei.academy.model.cart.Cart;
 import rikkei.academy.model.role.RoleName;
 import rikkei.academy.model.user.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static rikkei.academy.plugin.ConsoleColors.*;
 
@@ -13,7 +18,10 @@ public class ViewHome {
     UserController userController = new UserController();
     User currentUser = userController.getCurrentUser();
     RoleName roleName = new ArrayList<>(currentUser.getRoles()).get(0).getRoleName();
+    CarController carController = new CarController();
+    List<Car> carList = carController.showListCar();
 
+    CartController cartController = new CartController();
 
     public ViewHome() {
         switch (roleName) {
@@ -32,12 +40,17 @@ public class ViewHome {
 
     public void menuUser() {
         System.out.println("HELLO " + roleName + ": " + currentUser.getName());
-        System.out.println("1. Show category list");
-        System.out.println("2. Show car list");
-        System.out.println("3. Show detail car");
-        System.out.println("4. My profile");
-        System.out.println("5. Change password");
-        System.out.println("6. Log out");
+        System.out.println(RED + "----------------------------");
+        System.out.println("|        *** MENU ***       |");
+        System.out.println("|    1. Show category list  |");
+        System.out.println("|    2. Show car list       |");
+        System.out.println("|    3. Show detail car     |");
+        System.out.println("|    4. Buy car             |");
+        System.out.println("|    8. My Cart             |");
+        System.out.println("|    5. My profile          |");
+        System.out.println("|    6. Change password     |");
+        System.out.println("|    7. Log out             |");
+        System.out.println("----------------------------" + RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {
@@ -51,18 +64,42 @@ public class ViewHome {
                 new ViewCar().formShowDetailCar();
                 break;
             case 4:
-                System.out.println("Current User: " + currentUser);
-                new ViewMyProfile().formChangeProfile();
+                formOrderCar();
                 break;
             case 5:
-                new ViewUser().formChangePassword();
+                System.out.println("Current User: " + currentUser);
+                new ViewMyProfile().viewProfile();
                 break;
             case 6:
+                new ViewUser().formChangePassword();
+                break;
+            case 7:
                 userController.logout();
                 new ViewMenu().menu();
                 break;
+            case 8:
+                formMyCart();
+                break;
         }
         menuUser();
+    }
+
+    private void formMyCart() {
+        Cart cart = cartController.getMyCart();
+            for (int idCar : cart.getCartMap().keySet()) {
+                System.out.print(carController.detailCar(idCar).getCarName() + " amount: "+cart.getCartMap().get(idCar)+"   ");
+            }
+            System.out.println();
+    }
+
+    private void formOrderCar() {
+        System.out.printf("%-5s %-10s %s\n", "ID", "NAME", "AMOUNT");
+        for (Car car : carList) {
+            System.out.printf("%-5d %-10s %d\n", car.getId(), car.getCarName(), car.getAmount());
+        }
+        System.out.println("Enter id to add to cart");
+        int id = Config.getValidInteger();
+        cartController.createCart(id);
     }
 
 
@@ -107,7 +144,7 @@ public class ViewHome {
 
     public void menuAdmin() {
         System.out.println("Hello ADMIN: " + currentUser.getName());
-        System.out.println(BLUE+"------------------------");
+        System.out.println(BLUE + "------------------------");
         System.out.println("|   1. Car manage      |");
         System.out.println("|   2. Category manage |");
         System.out.println("|   3. Company manage  |");

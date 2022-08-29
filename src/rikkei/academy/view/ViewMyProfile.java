@@ -67,8 +67,10 @@ public class ViewMyProfile {
             }
             User newUser = new User(currentUser.getId(), newName, newEmail, currentUser.getPassword());
             userController.editUser(userName,newUser);
+            System.out.println("new user==== " + newUser);
             System.out.println("Update success");
             userController.getListUser();
+
         }
     }
 }
