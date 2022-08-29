@@ -22,9 +22,9 @@ public class UserController {
     public List<User> getListUser(){
        return userService.findAll();
     }
-    public void createUser(User user){
-        userService.save(user);
-    }
+//    public void createUser(User user){
+//        userService.save(user);
+//    }
     public ResponseMessenger register(SignUpDTO signUpDTO){
         if (userService.existedByUsername(signUpDTO.getUsername())){
             return new ResponseMessenger("user_existed");
@@ -113,5 +113,10 @@ public class UserController {
         }else {
             return new ResponseMessenger("unblocked");
         }
+    }
+    public void editUser(String username, User newUser){
+        User user1 = userService.findByUsername(username);
+        user1.setName(newUser.getName());
+        user1.setEmail(newUser.getEmail());
     }
 }

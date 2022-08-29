@@ -49,7 +49,7 @@ public class ViewUser {
         viewUserMenu();
     }
 
-    private void formBlockUser() {
+    public void formBlockUser() {
         formShowListUser();
         System.out.println("Enter username to block:");
         String username = Config.scanner().nextLine();
@@ -67,7 +67,7 @@ public class ViewUser {
 
     }
 
-    private void formChangeRole() {
+    public void formChangeRole() {
         formShowListUser();
         System.out.println("Enter username of user to change role");
         String username = Config.scanner().nextLine();
@@ -86,7 +86,7 @@ public class ViewUser {
         }
     }
 
-    private void formChangePassword() {
+    public void formChangePassword() {
         String oldPassword;
         while (true) {
             System.out.println("ENTER YOUR PASSWORD: ");
@@ -154,7 +154,7 @@ public class ViewUser {
         }
     }
 
-    private void formShowListUser() {
+    public void formShowListUser() {
         System.out.printf("| %s  | %-15s | %s |%n", "ID", "USERNAME", "ROLE", "STATUS");
         for (User user : userList) {
             System.out.printf("| %s | %-15s | %s |%n", user.getId(), user.getUsername(), user.getRoleName(), user.isStatus() ? "ACTIVATING" : "BLOCKED");

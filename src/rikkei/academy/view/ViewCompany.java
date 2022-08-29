@@ -7,17 +7,22 @@ import rikkei.academy.model.company.Company;
 
 import java.util.List;
 
+import static rikkei.academy.plugin.ConsoleColors.BLUE;
+import static rikkei.academy.plugin.ConsoleColors.RESET;
+
 public class ViewCompany {
     CompanyController companyController = new CompanyController();
     List<Company> companyList = companyController.showCompanyList();
 
     public void menuCompany(){
-        System.out.println("-----MENU COMPANY-----");
-        System.out.println("1. Show company list");
-        System.out.println("2. Create company");
-        System.out.println("3. Update company");
-        System.out.println("4. Delete company");
-        System.out.println("5. Back");
+        System.out.println(BLUE+"----------------------------");
+        System.out.println("|     ***MENU COMPANY***   |");
+        System.out.println("|   1. Show company list   |");
+        System.out.println("|   2. Create company      |");
+        System.out.println("|   3. Update company      |");
+        System.out.println("|   4. Delete company      |");
+        System.out.println("|   5. Back                | ");
+        System.out.println("----------------------------"+RESET);
         int choice = Config.getValidInteger();
         switch (choice){
             case 1:

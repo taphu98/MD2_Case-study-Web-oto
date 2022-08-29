@@ -7,18 +7,22 @@ import rikkei.academy.model.car.Car;
 
 import java.util.List;
 
+import static rikkei.academy.plugin.ConsoleColors.BLUE;
+
 public class ViewCar {
     CarController carController = new CarController();
     List<Car> carList = carController.showListCar();
 
     public void menuCar() {
-        System.out.println("***CAR MANAGE***");
-        System.out.println("1. Show car list");
-        System.out.println("2. Create car");
-        System.out.println("3. Show detail car");
-        System.out.println("4. Update car");
-        System.out.println("5. Delete car");
-        System.out.println("6. Back");
+        System.out.println(BLUE+"-----------------------------");
+        System.out.println("|     ***CAR MANAGE***    |");
+        System.out.println("|    1. Show car list     |");
+        System.out.println("|    2. Create car        |");
+        System.out.println("|    3. Show detail car   |");
+        System.out.println("|    4. Update car        |");
+        System.out.println("|    5. Delete car        |");
+        System.out.println("|    6. Back              |");
+        System.out.println("---------------------------");
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {

@@ -16,12 +16,12 @@ public class ViewCategory {
 
     public void categoryMenu() {
         System.out.println(BLUE+"------------------------------");
-        System.out.println("|     ***CATEGORY MANAGE***   |");
-        System.out.println("|  1. Category product list   |");
-        System.out.println("|  2. Create category product |");
-        System.out.println("|  3. Edit category product   |");
-        System.out.println("|  4. Delete category product |");
-        System.out.println("|  5. Back to menu            |");
+        System.out.println("|     ***CATEGORY MANAGE***    |");
+        System.out.println("|  1. Category product list    |");
+        System.out.println("|  2. Create category product  |");
+        System.out.println("|  3. Edit category product    |");
+        System.out.println("|  4. Delete category product  |");
+        System.out.println("|  5. Back to menu             |");
         System.out.println("-------------------------------" + RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
@@ -80,7 +80,7 @@ public class ViewCategory {
         } else {
             Category category = categoryController.findCategory(idCategory);
             System.out.println("OLD CATEGORY NAME: " + category.getName());
-            System.out.println("ENTER THE NEW CATEGORY NAME: ");
+            System.out.println("ENTER NEW CATEGORY NAME: ");
             String newCategoryName = Config.scanner().nextLine();
             if (newCategoryName.matches("[a-zA-Z]{1,10}")) {
                 newCategoryName = category.getName();
@@ -133,7 +133,7 @@ public class ViewCategory {
     public void formShowCategoryList() {
         System.out.printf("| %-15s | %-15s |%n", " CATEGORY ID ", " CATEGORY NAME ");
         for (int i = 0; i < categoryList.size(); i++) {
-            System.out.printf("| %-15d | %-15s |%n", categoryList.get(i).getId(), categoryList.get(i).getName());
+            System.out.printf("|      %-10d |       %-5s     |%n", categoryList.get(i).getId(), categoryList.get(i).getName());
 
         }
     }

@@ -40,6 +40,13 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
+    public User(int id, String newName,String newEmail,String password ) {
+        this.id = id;
+        this.name = newName;
+        this.email = newEmail;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -114,14 +121,11 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", status=" + status +
-                ", roles=" + roles +
-                '}';
+        return "Name: " + name +
+                " | Username: " + username +
+                " | Email: " + email+
+                " | Password: " + password +
+                " | Roles: " + roles +
+                " |";
     }
 }

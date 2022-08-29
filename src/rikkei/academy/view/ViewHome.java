@@ -38,7 +38,9 @@ public class ViewHome {
         System.out.println("1. Show category list");
         System.out.println("2. Show car list");
         System.out.println("3. Show detail car");
-        System.out.println("4. Log out");
+        System.out.println("4. My profile");
+        System.out.println("5. Change password");
+        System.out.println("6. Log out");
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {
@@ -52,6 +54,13 @@ public class ViewHome {
                 new ViewCar().formShowDetailCar();
                 break;
             case 4:
+                System.out.println("Current User: " + currentUser);
+                new ViewMyProfile().formChangeProfile();
+                break;
+            case 5:
+                new ViewUser().formChangePassword();
+                break;
+            case 6:
                 userController.logout();
                 new ViewMenu().menu();
                 break;
@@ -65,7 +74,10 @@ public class ViewHome {
         System.out.println("1. Car manage ");
         System.out.println("2. Category manage  ");
         System.out.println("3. Company manage ");
-        System.out.println("4. Log out ");
+        System.out.println("4. My profile ");
+        System.out.println("5. Change password");
+        System.out.println("6. Block user ");
+        System.out.println("7. Log out ");
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
         switch (choice) {
@@ -79,6 +91,16 @@ public class ViewHome {
                 new ViewCompany().menuCompany();
                 break;
             case 4:
+                System.out.println("Current User: " + currentUser);
+                new ViewMyProfile().formChangeProfile();
+                break;
+            case 5:
+                new ViewUser().formChangePassword();
+                break;
+            case 6:
+                new ViewUser().formBlockUser();
+                break;
+            case 7:
                 userController.logout();
                 new ViewMenu().menu();
                 break;
@@ -93,7 +115,8 @@ public class ViewHome {
         System.out.println("|   2. Category manage |");
         System.out.println("|   3. Company manage  |");
         System.out.println("|   4. User manage     |");
-        System.out.println("|   5. Log out         |");
+        System.out.println("|   5. My profile      |");
+        System.out.println("|   6. Log out         |");
         System.out.println("------------------------");
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
@@ -111,6 +134,9 @@ public class ViewHome {
                 new ViewUser().viewUserMenu();
                 break;
             case 5:
+                new ViewMyProfile().viewProfile();
+                break;
+            case 6:
                 userController.logout();
                 new ViewMenu().menu();
                 break;
