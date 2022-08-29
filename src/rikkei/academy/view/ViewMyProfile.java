@@ -59,6 +59,7 @@ public class ViewMyProfile {
             if (newName.matches("[A-Z][a-zA-Z]{1,10}")){
                 newName = user.getName();
             }
+            System.out.println("OLD EMAIL: " + currentUser.getEmail());
             System.out.println("ENTER NEW EMAIL: ");
             String newEmail = Config.scanner().nextLine();
             if (newEmail.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")){

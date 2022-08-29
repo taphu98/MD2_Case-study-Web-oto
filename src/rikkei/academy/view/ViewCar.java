@@ -133,7 +133,7 @@ public class ViewCar {
                 idCar = carList.get(carList.size() - 1).getId() + 1;
             }
             String name, category, carCompany;
-            int price;
+            int price,amount;
 //            if (name.trim())
             System.out.println("ENTER CAR'S NAME: ");
             name = Config.scanner().nextLine();
@@ -141,10 +141,11 @@ public class ViewCar {
             category = Config.scanner().nextLine();
             System.out.println("ENTER CAR'S PRICE($): ");
             price = Config.getValidInteger();
-            System.out.println("ENTER CAR'S COMPANY");
+            System.out.println("ENTER CAR'S COMPANY: ");
             carCompany = Config.scanner().nextLine();
-
-            Car car = new Car(idCar, name, category, price, carCompany);
+            System.out.println("ENTER CAR'S AMOUNT: ");
+            amount = Config.getValidInteger();
+            Car car = new Car(idCar, name, category, price, carCompany, amount);
             carController.createCar(car);
             System.out.println("Create success!");
             carController.showListCar();
@@ -169,11 +170,11 @@ public class ViewCar {
     }
 
     public void formShowCarList() {
-        System.out.printf("| %-10s | %-15s | %-15s | %-15s | %-15s | %n", "Car id", "Name", "Category", "Price", "Company");
+        System.out.printf("| %-10s | %-15s | %-15s | %-15s | %-15s | %-15s | %n", "Car id", "Name", "Category", "Price", "Company","Amount");
 
         for (int i = 0; i < carList.size(); i++) {
             int j = i + 1;
-            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s |%n", j,carList.get(i).getCarName(), carList.get(i).getCategory(), carList.get(i).getPrice() + "$", carList.get(i).getCarCompany());
+            System.out.printf("| %-10d | %-15s | %-15s | %-15s | %-15s | %-15s |%n", j,carList.get(i).getCarName(), carList.get(i).getCategory(), carList.get(i).getPrice() + "$", carList.get(i).getCarCompany(), carList.get(i).getAmount());
         }
     }
 

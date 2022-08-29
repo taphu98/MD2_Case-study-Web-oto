@@ -1,16 +1,13 @@
 package rikkei.academy.view;
 
 import rikkei.academy.config.Config;
-import rikkei.academy.controller.CarController;
 import rikkei.academy.controller.UserController;
-import rikkei.academy.model.car.Car;
 import rikkei.academy.model.role.RoleName;
 import rikkei.academy.model.user.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static rikkei.academy.plugin.ConsoleColors.BLUE;
+import static rikkei.academy.plugin.ConsoleColors.*;
 
 public class ViewHome {
     UserController userController = new UserController();

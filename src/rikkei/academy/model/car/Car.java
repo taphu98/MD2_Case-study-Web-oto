@@ -9,6 +9,7 @@ public class Car implements Serializable, Comparable<Car> {
     private String category;
     private int price;
     private String carCompany;
+    private int amount;
 
     public Car( String newCarName, String newCategory, String newPrice,String newCompanyName) {
 
@@ -18,12 +19,13 @@ public class Car implements Serializable, Comparable<Car> {
         this.carCompany = newCompanyName;
     }
 
-    public Car(int id, String carName, String category, int price, String carCompany) {
+    public Car(int id, String carName, String category, int price, String carCompany, int amount) {
         this.id = id;
         this.carName = carName;
         this.category = category;
         this.price = price;
         this.carCompany = carCompany;
+        this.amount = amount;
     }
 
 
@@ -33,6 +35,14 @@ public class Car implements Serializable, Comparable<Car> {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getCarName() {
@@ -75,6 +85,7 @@ public class Car implements Serializable, Comparable<Car> {
                 " | Car Name: " + category +
                 " | Status: " + price+
                 " | Price: " + carCompany + "$" +
+                " | Amount: " + amount +
                 " | ";
     }
 
