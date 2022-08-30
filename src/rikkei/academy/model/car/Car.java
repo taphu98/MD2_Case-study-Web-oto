@@ -28,6 +28,10 @@ public class Car implements Serializable, Comparable<Car> {
         this.amount = amount;
     }
 
+    public Car(int newAmount) {
+        this.amount = newAmount;
+    }
+
 
     public int getId() {
         return id;

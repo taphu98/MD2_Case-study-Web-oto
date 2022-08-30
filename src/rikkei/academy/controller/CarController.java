@@ -38,4 +38,8 @@ public class CarController {
         return carService.sortCarList();
     }
 
+    public void editCar1(int id, Car newCar2) {
+        Car car2 = carService.findById(id);
+        car2.setAmount(newCar2.getAmount());
+    }
 }

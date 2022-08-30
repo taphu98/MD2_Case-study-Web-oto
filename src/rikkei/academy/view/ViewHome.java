@@ -103,11 +103,15 @@ public class ViewHome {
             }
             System.out.println("Enter id to add to cart");
             int id = Config.getValidInteger();
-            if (carList.get(id).getAmount()!=0){
+            if (carController.detailCar(id).getAmount()!=0){
+              int newAmount=  carController.detailCar(id).getAmount()-1;
+              Car newCar2 = new Car(newAmount);
+              carController.editCar1(id,newCar2);
             cartController.createCart(id);
+
             System.out.println("Add success");
             }else {
-                System.out.println("This car is out of product");
+                System.out.println("This car is out of stock");
                 break;
             }
             System.out.println("Enter any key to continue - Enter 'quit' to quit: ");

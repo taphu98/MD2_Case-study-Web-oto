@@ -136,11 +136,11 @@ public class ViewCar {
 
             System.out.println("ENTER CAR'S NAME: ");
             String name = Config.scanner().nextLine();
-            System.out.println("ENTER CAR'S CATEGORY ID: ");
+            System.out.println("ENTER CAR'S CATEGORY: ");
             String category = Config.scanner().nextLine();
             System.out.println("ENTER CAR'S PRICE($): ");
             int price = Config.getValidInteger();
-            System.out.println("ENTER CAR'S COMPANY ID: ");
+            System.out.println("ENTER CAR'S COMPANY: ");
             String carCompany = Config.scanner().nextLine();
             System.out.println("ENTER CAR'S AMOUNT: ");
             int amount = Config.getValidInteger();
