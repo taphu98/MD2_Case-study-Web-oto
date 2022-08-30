@@ -22,9 +22,6 @@ public class UserController {
     public List<User> getListUser(){
        return userService.findAll();
     }
-//    public void createUser(User user){
-//        userService.save(user);
-//    }
     public ResponseMessenger register(SignUpDTO signUpDTO){
         if (userService.existedByUsername(signUpDTO.getUsername())){
             return new ResponseMessenger("user_existed");

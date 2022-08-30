@@ -4,6 +4,7 @@ import rikkei.academy.config.Config;
 import rikkei.academy.controller.CarController;
 import rikkei.academy.controller.CartController;
 import rikkei.academy.controller.UserController;
+import rikkei.academy.dto.response.ResponseMessenger;
 import rikkei.academy.model.car.Car;
 import rikkei.academy.model.cart.Cart;
 import rikkei.academy.model.role.RoleName;
@@ -22,6 +23,7 @@ public class ViewHome {
     List<Car> carList = carController.showListCar();
 
     CartController cartController = new CartController();
+    List<Cart> cartList = cartController.showCartList();
 
     public ViewHome() {
         switch (roleName) {
@@ -91,6 +93,15 @@ public class ViewHome {
         for (int idCar : cart.getCartMap().keySet()) {
             System.out.print("Car name: " + carController.detailCar(idCar).getCarName() + " \nAmount: " + cart.getCartMap().get(idCar) + "\n");
         }
+        System.out.println("Enter 1 to pay / 2 for cancel:");
+        int choice = Config.getValidInteger();
+//        ResponseMessenger messenger = cartController.changeStatusCart(choice);
+//        switch (messenger.getMessage()) {
+//            case "not_found":
+//                System.out.println("Invalid choice");
+//                break;
+
+//        }
         System.out.println();
     }
 
@@ -103,20 +114,32 @@ public class ViewHome {
             }
             System.out.println("Enter id to add to cart");
             int id = Config.getValidInteger();
-            if (carController.detailCar(id).getAmount()!=0){
-              int newAmount=  carController.detailCar(id).getAmount()-1;
-              Car newCar2 = new Car(newAmount);
-              carController.editCar1(id,newCar2);
-            cartController.createCart(id);
+            if (carController.detailCar(id).getAmount() != 0) {
+                int newAmount = carController.detailCar(id).getAmount() - 1;
+                Car newCar2 = new Car(newAmount);
+                carController.editCar1(id, newCar2);
+                cartController.createCart(id);
 
-            System.out.println("Add success");
-            }else {
+                System.out.println("Add success");
+            } else {
                 System.out.println("This car is out of stock");
                 break;
             }
+//            System.out.println("Do you want to buy ? (Y/N)");
+//            String check = Config.scanner().nextLine();
+//            if (check.equalsIgnoreCase("Y")) {
+//                cartController.changeStatusCart(id);
+//                System.out.println("This cart is paid");
+//                System.out.println(cartList.get(id).isStatus());
+//                break;
+//            }else if (check.equalsIgnoreCase("N")){
+//                cartController.deleteCart(id);
+//                System.out.println("This cart has been canceled");
+//                break;
+//            }
             System.out.println("Enter any key to continue - Enter 'quit' to quit: ");
             String backMenu = Config.scanner().nextLine();
-            if(backMenu.equalsIgnoreCase("quit")){
+            if (backMenu.equalsIgnoreCase("quit")) {
                 new ViewHome();
                 break;
             }

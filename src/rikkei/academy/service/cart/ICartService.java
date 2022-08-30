@@ -6,5 +6,6 @@ import rikkei.academy.service.IGenerateService;
 public interface ICartService extends IGenerateService<Cart> {
     int getLastId();
     Cart findById(int id);
-  //  int changeStatus(int id);
+    void changeStatus(int id);
+    void deleteById(int id);
 }

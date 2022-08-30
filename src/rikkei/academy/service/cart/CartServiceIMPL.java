@@ -53,9 +53,21 @@ public class CartServiceIMPL implements ICartService {
         return null;
     }
 
-//    @Override
-//    public int changeStatus(int id) {
-//        Cart cart =
-//    }
+
+    @Override
+    public void changeStatus(int id) {
+        Cart cart = findById(id);
+        cart.setStatus(!cart.isStatus());
+        updateData();
+    }
+
+    @Override
+    public void deleteById(int id) {
+        for (Cart cart : cartList){
+            if (cart.getId()==id){
+                cartList.remove(id);
+            }
+        }
+    }
 
 }
