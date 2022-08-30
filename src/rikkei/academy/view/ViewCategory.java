@@ -112,7 +112,7 @@ public class ViewCategory {
             }
             System.out.println("INSERT CATEGORY NAME : ");
             String categoryName = Config.scanner().nextLine();
-            if (categoryName.matches("[a-zA-Z\\d]{1,10}")){
+            if (categoryName.matches("[a-z A-Z\\d]{1,10}")){
                 Category category = new Category(idCategory, categoryName);
                 categoryController.createCategory(category);
                 System.out.println("Create success");

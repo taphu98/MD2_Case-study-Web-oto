@@ -11,12 +11,13 @@ public class Car implements Serializable, Comparable<Car> {
     private String carCompany;
     private int amount;
 
-    public Car( String newCarName, String newCategory, String newPrice,String newCompanyName) {
+    public Car( String newCarName, String newCategory,String newCompanyName, String newPrice,String newAmount) {
 
         this.carName = newCarName;
         this.category = newCategory;
         this.price = Integer.parseInt((newPrice));
         this.carCompany = newCompanyName;
+        this.amount = Integer.parseInt(newAmount);
     }
 
     public Car(int id, String carName, String category, int price, String carCompany, int amount) {

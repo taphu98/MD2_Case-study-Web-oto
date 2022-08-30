@@ -85,7 +85,11 @@ public class ViewCar {
             if (newPrice.trim().equals("")) {
                 newPrice = String.valueOf(car.getPrice());
             }
-            Car newCar = new Car(newCompanyName, newCarName, newCategory, newPrice);
+            String newAmount = Config.scanner().nextLine();
+            if (newAmount.trim().equals("")){
+                newAmount = String.valueOf(car.getAmount());
+            }
+            Car newCar = new Car(newCompanyName, newCarName, newCategory, newPrice,newAmount);
             carController.editCar(idCar, newCar);
             System.out.println("Update success!!");
             carController.showListCar();

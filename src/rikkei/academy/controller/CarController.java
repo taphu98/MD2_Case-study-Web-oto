@@ -27,6 +27,7 @@ public class CarController {
         car1.setCarName(newCar.getCarName());
         car1.setCategory(newCar.getCategory());
         car1.setPrice(newCar.getPrice());
+        car1.setAmount(newCar.getAmount());
     }
 
 
@@ -34,12 +35,13 @@ public class CarController {
         carService.deleteById(id);
     }
 
-    public List<Car> sortByCompanyName() {
-        return carService.sortCarList();
-    }
+//    public List<Car> sortByCompanyName() {
+//        return carService.sortCarList();
+//    }
 
     public void editCar1(int id, Car newCar2) {
         Car car2 = carService.findById(id);
         car2.setAmount(newCar2.getAmount());
     }
+
 }
