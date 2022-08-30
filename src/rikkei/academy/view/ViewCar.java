@@ -3,6 +3,7 @@ package rikkei.academy.view;
 
 import rikkei.academy.config.Config;
 import rikkei.academy.controller.CarController;
+import rikkei.academy.controller.CategoryController;
 import rikkei.academy.model.car.Car;
 
 import java.util.List;
@@ -132,19 +133,17 @@ public class ViewCar {
             } else {
                 idCar = carList.get(carList.size() - 1).getId() + 1;
             }
-            String name, category, carCompany;
-            int price,amount;
-//            if (name.trim())
+
             System.out.println("ENTER CAR'S NAME: ");
-            name = Config.scanner().nextLine();
-            System.out.println("ENTER CAR'S CATEGORY: ");
-            category = Config.scanner().nextLine();
+            String name = Config.scanner().nextLine();
+            System.out.println("ENTER CAR'S CATEGORY ID: ");
+            String category = Config.scanner().nextLine();
             System.out.println("ENTER CAR'S PRICE($): ");
-            price = Config.getValidInteger();
-            System.out.println("ENTER CAR'S COMPANY: ");
-            carCompany = Config.scanner().nextLine();
+            int price = Config.getValidInteger();
+            System.out.println("ENTER CAR'S COMPANY ID: ");
+            String carCompany = Config.scanner().nextLine();
             System.out.println("ENTER CAR'S AMOUNT: ");
-            amount = Config.getValidInteger();
+            int amount = Config.getValidInteger();
             Car car = new Car(idCar, name, category, price, carCompany, amount);
             carController.createCar(car);
             System.out.println("Create success!");

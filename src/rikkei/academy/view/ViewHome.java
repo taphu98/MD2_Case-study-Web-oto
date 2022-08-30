@@ -46,10 +46,10 @@ public class ViewHome {
         System.out.println("|    2. Show car list       |");
         System.out.println("|    3. Show detail car     |");
         System.out.println("|    4. Buy car             |");
-        System.out.println("|    8. My Cart             |");
-        System.out.println("|    5. My profile          |");
-        System.out.println("|    6. Change password     |");
-        System.out.println("|    7. Log out             |");
+        System.out.println("|    5. My Cart             |");
+        System.out.println("|    6. My profile          |");
+        System.out.println("|    7. Change password     |");
+        System.out.println("|    8. Log out             |");
         System.out.println("----------------------------" + RESET);
         System.out.println("Enter your choice:");
         int choice = Config.getValidInteger();
@@ -67,39 +67,56 @@ public class ViewHome {
                 formOrderCar();
                 break;
             case 5:
+                formMyCart();
+                break;
+            case 6:
                 System.out.println("Current User: " + currentUser);
                 new ViewMyProfile().viewProfile();
                 break;
-            case 6:
+            case 7:
                 new ViewUser().formChangePassword();
                 break;
-            case 7:
+            case 8:
                 userController.logout();
                 new ViewMenu().menu();
                 break;
-            case 8:
-                formMyCart();
-                break;
+
         }
         menuUser();
     }
 
     private void formMyCart() {
+        System.out.println("MY CART");
         Cart cart = cartController.getMyCart();
-            for (int idCar : cart.getCartMap().keySet()) {
-                System.out.print(carController.detailCar(idCar).getCarName() + " amount: "+cart.getCartMap().get(idCar)+"   ");
-            }
-            System.out.println();
+        for (int idCar : cart.getCartMap().keySet()) {
+            System.out.print("Car name: " + carController.detailCar(idCar).getCarName() + " \nAmount: " + cart.getCartMap().get(idCar) + "\n");
+        }
+        System.out.println();
     }
 
     private void formOrderCar() {
-        System.out.printf("%-5s %-10s %s\n", "ID", "NAME", "AMOUNT");
-        for (Car car : carList) {
-            System.out.printf("%-5d %-10s %d\n", car.getId(), car.getCarName(), car.getAmount());
+
+        while (true) {
+            System.out.printf("%-5s %-10s %s\n", "ID", "NAME", "AMOUNT");
+            for (Car car : carList) {
+                System.out.printf("%-5d %-10s %d\n", car.getId(), car.getCarName(), car.getAmount());
+            }
+            System.out.println("Enter id to add to cart");
+            int id = Config.getValidInteger();
+            if (carList.get(id).getAmount()!=0){
+            cartController.createCart(id);
+            System.out.println("Add success");
+            }else {
+                System.out.println("This car is out of product");
+                break;
+            }
+            System.out.println("Enter any key to continue - Enter 'quit' to quit: ");
+            String backMenu = Config.scanner().nextLine();
+            if(backMenu.equalsIgnoreCase("quit")){
+                new ViewHome();
+                break;
+            }
         }
-        System.out.println("Enter id to add to cart");
-        int id = Config.getValidInteger();
-        cartController.createCart(id);
     }
 
 

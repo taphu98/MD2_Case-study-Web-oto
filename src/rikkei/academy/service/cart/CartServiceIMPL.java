@@ -47,7 +47,8 @@ public class CartServiceIMPL implements ICartService {
     @Override
     public Cart findById(int id) {
         for (Cart cart : cartList){
-            if (cart.getId()==id) return cart;
+            if (cart.getId()==id)
+                return cart;
         }
         return null;
     }
